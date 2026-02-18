@@ -10,12 +10,13 @@
       "date": "2026-03-15T09:00:00.000Z",
       "durationHours": 3,
       "slotsTotal": 40,
-      "slotsTaken": 18,
+      "slotsTaken": 0,
       "status": "open",
       "imageUrl": "https://images.pexels.com/photos/2827735/pexels-photo-2827735.jpeg",
       "organizerName": "Association Bleue Tunisie",
       "createdAt": "2026-02-18T10:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 2,
@@ -32,7 +33,8 @@
       "imageUrl": "https://images.pexels.com/photos/5487075/pexels-photo-5487075.jpeg",
       "organizerName": "Forêts Vertes Tunisie",
       "createdAt": "2026-02-10T09:00:00.000Z",
-      "isUserRegistered": true
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 3,
@@ -44,12 +46,13 @@
       "date": "2026-04-05T17:00:00.000Z",
       "durationHours": 2,
       "slotsTotal": 20,
-      "slotsTaken": 9,
+      "slotsTaken": 0,
       "status": "open",
       "imageUrl": "https://images.pexels.com/photos/3735208/pexels-photo-3735208.jpeg",
       "organizerName": "Zéro Déchet Sfax",
       "createdAt": "2026-02-12T14:30:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 4,
@@ -66,7 +69,8 @@
       "imageUrl": "https://images.pexels.com/photos/9543745/pexels-photo-9543745.jpeg",
       "organizerName": "Rivière Propre Béja",
       "createdAt": "2026-02-14T11:15:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 5,
@@ -83,7 +87,8 @@
       "imageUrl": "https://images.pexels.com/photos/7656745/pexels-photo-7656745.jpeg",
       "organizerName": "EcoNord Tunisie",
       "createdAt": "2026-02-16T16:45:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 6,
@@ -100,7 +105,8 @@
       "imageUrl": "https://images.pexels.com/photos/3850512/pexels-photo-3850512.jpeg",
       "organizerName": "Hammamet EcoTourisme",
       "createdAt": "2026-02-17T09:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 7,
@@ -117,7 +123,8 @@
       "imageUrl": "https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg",
       "organizerName": "Énergie Verte Tunisie",
       "createdAt": "2026-02-15T08:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 8,
@@ -134,7 +141,8 @@
       "imageUrl": "https://images.pexels.com/photos/9543414/pexels-photo-9543414.jpeg",
       "organizerName": "Sahara Vert",
       "createdAt": "2026-02-18T11:30:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 9,
@@ -151,7 +159,8 @@
       "imageUrl": "https://images.pexels.com/photos/5503338/pexels-photo-5503338.jpeg",
       "organizerName": "Compost & Cité",
       "createdAt": "2026-02-13T10:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 10,
@@ -168,7 +177,8 @@
       "imageUrl": "https://images.pexels.com/photos/9037222/pexels-photo-9037222.jpeg",
       "organizerName": "Djerba Propre",
       "createdAt": "2026-02-11T09:00:00.000Z",
-      "isUserRegistered": true
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 11,
@@ -185,7 +195,8 @@
       "imageUrl": "https://images.pexels.com/photos/1084540/pexels-photo-1084540.jpeg",
       "organizerName": "Jardins Solidaires Tunisie",
       "createdAt": "2026-02-17T14:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 12,
@@ -202,7 +213,8 @@
       "imageUrl": "https://images.pexels.com/photos/19037726/pexels-photo-19037726.jpeg",
       "organizerName": "Recycle Tech TN",
       "createdAt": "2026-02-16T10:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 13,
@@ -219,7 +231,8 @@
       "imageUrl": "https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg",
       "organizerName": "SOS Faune Marine",
       "createdAt": "2026-02-18T08:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 14,
@@ -236,7 +249,8 @@
       "imageUrl": "https://images.pexels.com/photos/3850512/pexels-photo-3850512.jpeg",
       "organizerName": "Répare & Partage",
       "createdAt": "2026-02-15T16:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 15,
@@ -253,7 +267,8 @@
       "imageUrl": "https://images.pexels.com/photos/8018592/pexels-photo-8018592.jpeg",
       "organizerName": "Mer Propre Nord TN",
       "createdAt": "2026-02-14T09:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 16,
@@ -270,7 +285,8 @@
       "imageUrl": "https://images.pexels.com/photos/6647007/pexels-photo-6647007.jpeg",
       "organizerName": "Zaghouan Vert",
       "createdAt": "2026-02-13T12:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 17,
@@ -287,7 +303,8 @@
       "imageUrl": "https://images.pexels.com/photos/30712158/pexels-photo-30712158.jpeg",
       "organizerName": "Forum Eco Kairouan",
       "createdAt": "2026-02-16T14:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 18,
@@ -304,7 +321,8 @@
       "imageUrl": "https://images.pexels.com/photos/9034670/pexels-photo-9034670.jpeg",
       "organizerName": "Cap Bon Propre",
       "createdAt": "2026-02-17T10:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 19,
@@ -321,7 +339,8 @@
       "imageUrl": "https://images.pexels.com/photos/1183992/pexels-photo-1183992.jpeg",
       "organizerName": "Art & Écologie Gabès",
       "createdAt": "2026-02-18T07:30:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
     },
     {
       "id": 20,
@@ -338,7 +357,28 @@
       "imageUrl": "https://images.pexels.com/photos/6068952/pexels-photo-6068952.jpeg",
       "organizerName": "Troc & Partage TN",
       "createdAt": "2026-02-18T12:00:00.000Z",
-      "isUserRegistered": false
+      "creatorId": 1,
+      "participants": []
+    },
+    {
+      "title": "Test",
+      "description": "Test",
+      "type": "nettoyage_plage",
+      "city": "",
+      "address": "",
+      "date": "2026-02-18T19:17:30.098Z",
+      "durationHours": 2,
+      "slotsTotal": 20,
+      "imageUrl": "",
+      "organizerName": "",
+      "creatorId": 2,
+      "participants": [
+        2
+      ],
+      "status": "open",
+      "slotsTaken": 1,
+      "createdAt": "2026-02-18T19:17:36.503Z",
+      "id": 21
     }
   ],
   "users": [

@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   },
   searchIcon: { fontSize: 16 },
   searchInput: { flex: 1, fontSize: 14, padding: 0 },
-  filterRow: { marginBottom: 6 },
+  filterRow: { marginBottom: 6 ,height:70},
   filterContent: { paddingHorizontal: 16, gap: 8 },
   chip: {
     paddingHorizontal: 14,

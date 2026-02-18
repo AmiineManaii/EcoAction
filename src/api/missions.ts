@@ -12,6 +12,7 @@ export type MissionType =
 
 export type Mission = {
   id: number;
+  creatorId: number;
   title: string;
   description: string;
   type: MissionType;
@@ -25,11 +26,11 @@ export type Mission = {
   imageUrl: string;
   organizerName: string;
   createdAt: string;
-  isUserRegistered: boolean;
+  participants: number[];
 };
 
-export type MissionPayload = Omit<Mission, 'id' | 'createdAt' | 'slotsTaken' | 'status' | 'isUserRegistered'> &
-  Partial<Pick<Mission, 'status' | 'slotsTaken' | 'isUserRegistered'>>;
+export type MissionPayload = Omit<Mission, 'id' | 'createdAt' | 'slotsTaken' | 'status'> &
+  Partial<Pick<Mission, 'status' | 'slotsTaken'>>;
 
 async function getMissions(): Promise<Mission[]> {
 

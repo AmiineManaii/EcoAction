@@ -5,6 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useMission, useUpdateMission, useDeleteMission } from '../../src/hooks/useMissions';
 import { useTheme } from '../../src/theme/theme';
 import { useToast } from '../../src/components/Toast';
+import { useAuth } from '../../src/hooks/useAuth';
+import { request } from '../../src/api/client';
 
 const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
   open: { label: '🟢 Ouverte', color: '#40916C' },
@@ -22,6 +24,7 @@ export default function MissionDetailScreen() {
   const deleteMutation = useDeleteMission();
   const { theme } = useTheme();
   const { showToast } = useToast();
+  const { user } = useAuth();
 
   if (!id || isLoading) {
     return (
@@ -44,19 +47,24 @@ export default function MissionDetailScreen() {
     );
   }
 
+  const isOwner = user?.id === mission.creatorId;
+  const isRegistered = user ? mission.participants.includes(user.id) : false;
   const slots = mission.slotsTotal - mission.slotsTaken;
   const fillPercent = Math.min((mission.slotsTaken / mission.slotsTotal) * 100, 100);
   const statusConf = STATUS_CONFIG[mission.status] ?? { label: mission.status, color: '#6B7280' };
-  const canRegister = mission.status === 'open' && (mission.isUserRegistered || slots > 0);
+  const canRegister = mission.status === 'open' && (isRegistered || slots > 0);
 
   const toggleRegistration = () => {
-    const isUserRegistered = !mission.isUserRegistered;
-    const slotsTaken = mission.slotsTaken + (isUserRegistered ? 1 : -1);
+    if (!user) return;
+    const nextParticipants = isRegistered
+      ? mission.participants.filter((pid) => pid !== user.id)
+      : [...mission.participants, user.id];
+    const slotsTaken = nextParticipants.length;
     updateMutation.mutate(
-      { isUserRegistered, slotsTaken },
+      { participants: nextParticipants, slotsTaken },
       {
         onSuccess: () => {
-          showToast(isUserRegistered ? '✅ Inscription confirmée !' : 'Désinscription confirmée.', 'success');
+          showToast(!isRegistered ? '✅ Inscription confirmée !' : 'Désinscription confirmée.', 'success');
         },
       },
     );
@@ -166,7 +174,7 @@ export default function MissionDetailScreen() {
                 styles.primaryBtn,
                 {
                   backgroundColor: canRegister
-                    ? mission.isUserRegistered
+                    ? isRegistered
                       ? theme.colors.danger
                       : theme.colors.primary
                     : theme.colors.border,
@@ -175,24 +183,64 @@ export default function MissionDetailScreen() {
               ]}
             >
               <Text style={styles.primaryBtnText}>
-                {mission.isUserRegistered ? '❌ Se désinscrire' : "✅ S'inscrire"}
+                {isRegistered ? '❌ Se désinscrire' : "✅ S'inscrire"}
               </Text>
             </Pressable>
 
-            <View style={styles.secondaryActions}>
-              <Pressable
-                onPress={() => router.push({ pathname: '/(tabs)/mission-edit', params: { id: String(mission.id) } })}
-                style={[styles.secondaryBtn, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}
-              >
-                <Text style={[styles.secondaryBtnText, { color: theme.colors.text }]}>✏️ Modifier</Text>
-              </Pressable>
-              <Pressable
-                onPress={handleDelete}
-                style={[styles.secondaryBtn, { backgroundColor: theme.colors.card, borderColor: '#FECACA' }]}
-              >
-                <Text style={[styles.secondaryBtnText, { color: theme.colors.danger }]}>🗑️ Supprimer</Text>
-              </Pressable>
-            </View>
+            {isOwner && (
+              <View style={styles.secondaryActions}>
+                <Pressable
+                  onPress={() =>
+                    router.push({ pathname: '/(tabs)/mission-edit', params: { id: String(mission.id) } })
+                  }
+                  style={[styles.secondaryBtn, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}
+                >
+                  <Text style={[styles.secondaryBtnText, { color: theme.colors.text }]}>✏️ Modifier</Text>
+                </Pressable>
+                <Pressable
+                  onPress={handleDelete}
+                  style={[styles.secondaryBtn, { backgroundColor: theme.colors.card, borderColor: '#FECACA' }]}
+                >
+                  <Text style={[styles.secondaryBtnText, { color: theme.colors.danger }]}>🗑️ Supprimer</Text>
+                </Pressable>
+              </View>
+            )}
+
+            {isOwner && mission.participants.length > 0 && (
+              <View style={[styles.infoCard, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
+                <Text style={[styles.infoLabel, { color: theme.colors.mutedText }]}>PARTICIPANTS</Text>
+                <View style={{ gap: 8 }}>
+                  {mission.participants.map((pid) => (
+                    <View
+                      key={pid}
+                      style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                    >
+                      <Text style={[styles.infoValue, { color: theme.colors.text }]}>Utilisateur #{pid}</Text>
+                      <Pressable
+                        onPress={() => {
+                          const next = mission.participants.filter((idp) => idp !== pid);
+                          updateMutation.mutate(
+                            { participants: next, slotsTaken: next.length },
+                            { onSuccess: () => showToast('Participation annulée.', 'success') },
+                          );
+                        }}
+                        style={[
+                          styles.secondaryBtn,
+                          {
+                            paddingVertical: 6,
+                            paddingHorizontal: 10,
+                            backgroundColor: theme.colors.card,
+                            borderColor: '#FECACA',
+                          },
+                        ]}
+                      >
+                        <Text style={[styles.secondaryBtnText, { color: theme.colors.danger }]}>Retirer</Text>
+                      </Pressable>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
           </View>
         </View>
       </ScrollView>

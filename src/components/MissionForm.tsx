@@ -33,14 +33,21 @@ export function MissionForm({ initialValues, onSubmit, submitLabel }: MissionFor
 
   const handleSubmit = () => {
     onSubmit({
-      title, description, type, city, address, date,
+      title,
+      description,
+      type,
+      city,
+      address,
+      date,
       durationHours: Number(durationHours),
       slotsTotal: Number(slotsTotal),
-      slotsTaken: initialValues?.slotsTaken ?? 0,
-      status: initialValues?.status ?? 'open',
-      imageUrl, organizerName,
-      isUserRegistered: initialValues?.isUserRegistered ?? false,
-    });
+      imageUrl,
+      organizerName,
+      creatorId: (initialValues as any)?.creatorId,
+      participants: (initialValues as any)?.participants,
+      status: initialValues?.status,
+      slotsTaken: initialValues?.slotsTaken,
+    } as MissionPayload);
   };
 
   const inputStyle = [styles.input, { backgroundColor: theme.colors.inputBg, borderColor: theme.colors.border, color: theme.colors.text }];

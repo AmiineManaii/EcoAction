@@ -6,15 +6,26 @@ import { useCreateMission } from '../../src/hooks/useMissions';
 import { MissionForm } from '../../src/components/MissionForm';
 import { useToast } from '../../src/components/Toast';
 import { useTheme } from '../../src/theme/theme';
+import { useAuth } from '../../src/hooks/useAuth';
 
 export default function NewMissionScreen() {
   const router = useRouter();
   const mutation = useCreateMission();
   const { showToast } = useToast();
   const { theme } = useTheme();
+  const { user } = useAuth();
 
   const handleSubmit = (values: Parameters<typeof mutation.mutate>[0]) => {
-    mutation.mutate(values, {
+    const payload = {
+      ...values,
+      creatorId: user?.id as number,
+      participants: [],
+      slotsTaken: 0,
+      status: 'open',
+      createdAt: new Date().toISOString(),
+    } as any;
+
+    mutation.mutate(payload, {
       onSuccess: () => {
         showToast('🎉 Mission créée avec succès !', 'success');
         router.back();

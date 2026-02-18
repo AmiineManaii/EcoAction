@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AuthSession, login, register, User, refreshSession } from '../api/auth';
+import { AuthSession, login, register, User } from '../api/auth';
 
 type AuthContextValue = {
   user: User | null;
@@ -28,15 +28,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
         if (stored) {
           const parsed: AuthSession = JSON.parse(stored);
-          const expiresAt = new Date(parsed.accessTokenExpiresAt).getTime();
-
-          if (expiresAt > Date.now()) {
-            const refreshed = await refreshSession(parsed);
-            setSession(refreshed);
-            await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(refreshed));
-          } else {
-            await AsyncStorage.removeItem(STORAGE_KEY);
-          }
+          setSession(parsed);
         }
       } catch {
       } finally {
@@ -57,32 +49,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  useEffect(() => {
-    if (!session) {
-      return;
-    }
-
-    const expiresAtMs = new Date(session.accessTokenExpiresAt).getTime();
-    const now = Date.now();
-    const delay = Math.max(expiresAtMs - now - 60_000, 5_000);
-
-    const id = setTimeout(() => {
-      const refresh = async () => {
-        try {
-          const refreshed = await refreshSession(session);
-          await persistSession(refreshed);
-        } catch {
-          await persistSession(null);
-        }
-      };
-
-      refresh();
-    }, delay);
-
-    return () => {
-      clearTimeout(id);
-    };
-  }, [session]);
+  // No token refresh logic needed; sessions persist until logout.
 
   const handleLogin = async (email: string, password: string) => {
     const next = await login(email, password);
@@ -126,4 +93,3 @@ function useAuth() {
 }
 
 export { AuthProvider, useAuth };
-

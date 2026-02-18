@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Mission } from '../api/missions';
 import { useTheme } from '../theme/theme';
+import { useAuth } from '../hooks/useAuth';
 
 type MissionCardProps = { mission: Mission };
 
@@ -24,9 +25,11 @@ const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
 export function MissionCard({ mission }: MissionCardProps) {
   const router = useRouter();
   const { theme } = useTheme();
+  const { user } = useAuth();
   const statusConf = STATUS_CONFIG[mission.status] ?? { label: mission.status, color: '#6B7280' };
   const slots = mission.slotsTotal - mission.slotsTaken;
   const fillPercent = Math.min((mission.slotsTaken / mission.slotsTotal) * 100, 100);
+  const isRegistered = user ? mission.participants.includes(user.id) : false;
 
   return (
     <Pressable
@@ -48,7 +51,7 @@ export function MissionCard({ mission }: MissionCardProps) {
           <Text style={styles.statusText}>{statusConf.label}</Text>
         </View>
         {/* Registered badge */}
-        {mission.isUserRegistered && (
+        {isRegistered && (
           <View style={[styles.registeredBadge, { backgroundColor: theme.colors.primary }]}>
             <Text style={styles.registeredText}>✓ Inscrit</Text>
           </View>

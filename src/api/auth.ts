@@ -13,31 +13,7 @@ type UserRecord = User & {
 
 export type AuthSession = {
   user: User;
-  accessToken: string;
-  refreshToken: string;
-  accessTokenExpiresAt: string;
 };
-
-function createToken(id: number, type: 'access' | 'refresh') {
-  return `${type}-${id}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-}
-
-function createSessionFromUser(user: UserRecord): AuthSession {
-  const accessToken = createToken(user.id, 'access');
-  const refreshToken = createToken(user.id, 'refresh');
-  const accessTokenExpiresAt = new Date(Date.now() + 30 * 60 * 1000).toISOString();
-
-  return {
-    user: {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    },
-    accessToken,
-    refreshToken,
-    accessTokenExpiresAt,
-  };
-}
 
 async function register(name: string, email: string, password: string): Promise<AuthSession> {
   const existing = await request<UserRecord[]>(`/users?email=${encodeURIComponent(email)}`);
@@ -56,7 +32,13 @@ async function register(name: string, email: string, password: string): Promise<
     }),
   });
 
-  return createSessionFromUser(created);
+  return {
+    user: {
+      id: created.id,
+      email: created.email,
+      name: created.name,
+    },
+  };
 }
 
 async function login(email: string, password: string): Promise<AuthSession> {
@@ -67,14 +49,13 @@ async function login(email: string, password: string): Promise<AuthSession> {
     throw new Error('Identifiants invalides.');
   }
 
-  return createSessionFromUser(user);
+  return {
+    user: {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    },
+  };
 }
 
-async function refreshSession(session: AuthSession): Promise<AuthSession> {
-  const current = await request<UserRecord>(`/users/${session.user.id}`);
-
-  return createSessionFromUser(current);
-}
-
-export { login, register, refreshSession };
-
+export { login, register };

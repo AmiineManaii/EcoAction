@@ -11,8 +11,10 @@ export default function ProfileScreen() {
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const { missions } = useMissions();
-  const registeredCount = missions.filter((m) => m.isUserRegistered).length;
-  const completedCount = missions.filter((m) => m.isUserRegistered && m.status === 'completed').length;
+  const registeredCount = user ? missions.filter((m) => m.participants.includes(user.id)).length : 0;
+  const completedCount = user
+    ? missions.filter((m) => m.participants.includes(user.id) && m.status === 'completed').length
+    : 0;
 
   const handleLogout = async () => {
     await logout();

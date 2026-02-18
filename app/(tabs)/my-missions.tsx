@@ -6,11 +6,13 @@ import { MissionCard } from '../../src/components/MissionCard';
 import { Loader } from '../../src/components/Loader';
 import { ErrorState } from '../../src/components/ErrorState';
 import { useTheme } from '../../src/theme/theme';
+import { useAuth } from '../../src/hooks/useAuth';
 
 export default function MyMissionsScreen() {
   const { missions, isLoading, isError } = useMissions();
   const { theme } = useTheme();
-  const participatedMissions = missions.filter((m) => m.isUserRegistered);
+  const { user } = useAuth();
+  const participatedMissions = user ? missions.filter((m) => m.participants.includes(user.id)) : [];
 
   if (isLoading) return <Loader />;
   if (isError) return <ErrorState message="Impossible de charger vos missions." />;

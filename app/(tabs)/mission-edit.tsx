@@ -6,6 +6,7 @@ import { useMission, useUpdateMission } from '../../src/hooks/useMissions';
 import { MissionForm } from '../../src/components/MissionForm';
 import { useToast } from '../../src/components/Toast';
 import { useTheme } from '../../src/theme/theme';
+import { useAuth } from '../../src/hooks/useAuth';
 
 export default function MissionEditScreen() {
   const { id: idParam } = useLocalSearchParams<{ id?: string }>();
@@ -15,8 +16,13 @@ export default function MissionEditScreen() {
   const mutation = useUpdateMission(id as number);
   const { showToast } = useToast();
   const { theme } = useTheme();
+  const { user } = useAuth();
 
   if (!id || !mission) return null;
+  if (mission.creatorId !== user?.id) {
+    router.replace('/(tabs)');
+    return null;
+  }
 
   const handleSubmit = (values: Parameters<typeof mutation.mutate>[0]) => {
     mutation.mutate(values, {
