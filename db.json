@@ -10,13 +10,16 @@
       "date": "2026-03-15T09:00:00.000Z",
       "durationHours": 3,
       "slotsTotal": 40,
-      "slotsTaken": 0,
+      "slotsTaken": 1,
       "status": "open",
       "imageUrl": "https://images.pexels.com/photos/2827735/pexels-photo-2827735.jpeg",
       "organizerName": "Association Bleue Tunisie",
       "createdAt": "2026-02-18T10:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1,
+        2
+      ]
     },
     {
       "id": 2,
@@ -34,7 +37,9 @@
       "organizerName": "Forêts Vertes Tunisie",
       "createdAt": "2026-02-10T09:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 3,
@@ -46,13 +51,15 @@
       "date": "2026-04-05T17:00:00.000Z",
       "durationHours": 2,
       "slotsTotal": 20,
-      "slotsTaken": 0,
+      "slotsTaken": 1,
       "status": "open",
       "imageUrl": "https://images.pexels.com/photos/3735208/pexels-photo-3735208.jpeg",
       "organizerName": "Zéro Déchet Sfax",
       "createdAt": "2026-02-12T14:30:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 4,
@@ -70,7 +77,9 @@
       "organizerName": "Rivière Propre Béja",
       "createdAt": "2026-02-14T11:15:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 5,
@@ -88,7 +97,9 @@
       "organizerName": "EcoNord Tunisie",
       "createdAt": "2026-02-16T16:45:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 6,
@@ -106,7 +117,9 @@
       "organizerName": "Hammamet EcoTourisme",
       "createdAt": "2026-02-17T09:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 7,
@@ -124,7 +137,9 @@
       "organizerName": "Énergie Verte Tunisie",
       "createdAt": "2026-02-15T08:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 8,
@@ -142,7 +157,9 @@
       "organizerName": "Sahara Vert",
       "createdAt": "2026-02-18T11:30:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 9,
@@ -160,7 +177,9 @@
       "organizerName": "Compost & Cité",
       "createdAt": "2026-02-13T10:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 10,
@@ -178,7 +197,9 @@
       "organizerName": "Djerba Propre",
       "createdAt": "2026-02-11T09:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 11,
@@ -196,7 +217,9 @@
       "organizerName": "Jardins Solidaires Tunisie",
       "createdAt": "2026-02-17T14:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 12,
@@ -214,7 +237,9 @@
       "organizerName": "Recycle Tech TN",
       "createdAt": "2026-02-16T10:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 13,
@@ -232,7 +257,9 @@
       "organizerName": "SOS Faune Marine",
       "createdAt": "2026-02-18T08:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 14,
@@ -250,7 +277,9 @@
       "organizerName": "Répare & Partage",
       "createdAt": "2026-02-15T16:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 15,
@@ -268,7 +297,9 @@
       "organizerName": "Mer Propre Nord TN",
       "createdAt": "2026-02-14T09:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 16,
@@ -286,7 +317,9 @@
       "organizerName": "Zaghouan Vert",
       "createdAt": "2026-02-13T12:00:00.000Z",
       "creatorId": 1,
-      "participants": []
+      "participants": [
+        1
+      ]
     },
     {
       "id": 17,
@@ -364,9 +397,9 @@
       "title": "Test",
       "description": "Test",
       "type": "nettoyage_plage",
-      "city": "",
-      "address": "",
-      "date": "2026-02-18T19:17:30.098Z",
+      "city": "Tunis",
+      "address": "Tunis",
+      "date": "2026-02-18T23:29:32.265Z",
       "durationHours": 2,
       "slotsTotal": 20,
       "imageUrl": "",
@@ -377,7 +410,7 @@
       ],
       "status": "open",
       "slotsTaken": 1,
-      "createdAt": "2026-02-18T19:17:36.503Z",
+      "createdAt": "2026-02-18T23:30:13.095Z",
       "id": 21
     }
   ],

@@ -23,6 +23,9 @@ export function canRegister(userId: number | undefined, mission: MissionLike): b
 }
 
 export function toggleParticipation(userId: number, mission: MissionLike): MissionLike {
+  if (mission.creatorId === userId) {
+    return mission;
+  }
   const registered = isUserRegistered(userId, mission);
   const nextParticipants = registered
     ? mission.participants.filter((id) => id !== userId)
@@ -41,9 +44,11 @@ export function removeParticipant(
   if (!canEditMission(actingUserId, mission)) {
     throw new Error('Permission refusée');
   }
+  if (targetUserId === mission.creatorId) {
+    throw new Error('Impossible de retirer le créateur de la mission.');
+  }
   const nextParticipants = mission.participants.filter((id) => id !== targetUserId);
   const slotsTaken = nextParticipants.length;
   const nextStatus = mission.status === 'full' && slotsTaken < mission.slotsTotal ? 'open' : mission.status;
   return { ...mission, participants: nextParticipants, slotsTaken, status: nextStatus };
 }
-

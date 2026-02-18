@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View, Image, Pressable, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,7 +7,8 @@ import { useMission, useUpdateMission, useDeleteMission } from '../../src/hooks/
 import { useTheme } from '../../src/theme/theme';
 import { useToast } from '../../src/components/Toast';
 import { useAuth } from '../../src/hooks/useAuth';
-import { request } from '../../src/api/client';
+import { logParticipantChange } from '../../src/api/participantLogs';
+import { getUsers, AppUser } from '../../src/api/users';
 
 const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
   open: { label: '🟢 Ouverte', color: '#40916C' },
@@ -25,6 +27,19 @@ export default function MissionDetailScreen() {
   const { theme } = useTheme();
   const { showToast } = useToast();
   const { user } = useAuth();
+  const [users, setUsers] = useState<AppUser[]>([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch {
+      }
+    };
+
+    load();
+  }, []);
 
   if (!id || isLoading) {
     return (
@@ -56,6 +71,20 @@ export default function MissionDetailScreen() {
 
   const toggleRegistration = () => {
     if (!user) return;
+    if (isOwner) {
+      showToast(
+        "En tant que créateur de la mission, vous devez rester inscrit. Votre participation est obligatoire.",
+        'error',
+      );
+      logParticipantChange({
+        missionId: mission.id,
+        actingUserId: user.id,
+        targetUserId: user.id,
+        action: 'attempt_unsubscribe_creator',
+        details: 'Le créateur a tenté de se désinscrire de sa propre mission.',
+      }).catch(() => {});
+      return;
+    }
     const nextParticipants = isRegistered
       ? mission.participants.filter((pid) => pid !== user.id)
       : [...mission.participants, user.id];
@@ -64,6 +93,15 @@ export default function MissionDetailScreen() {
       { participants: nextParticipants, slotsTaken },
       {
         onSuccess: () => {
+          logParticipantChange({
+            missionId: mission.id,
+            actingUserId: user.id,
+            targetUserId: user.id,
+            action: isRegistered ? 'remove_participant' : 'add_participant',
+            details: isRegistered
+              ? "L'utilisateur s'est désinscrit de la mission."
+              : "L'utilisateur s'est inscrit à la mission.",
+          }).catch(() => {});
           showToast(!isRegistered ? '✅ Inscription confirmée !' : 'Désinscription confirmée.', 'success');
         },
       },
@@ -210,18 +248,51 @@ export default function MissionDetailScreen() {
               <View style={[styles.infoCard, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
                 <Text style={[styles.infoLabel, { color: theme.colors.mutedText }]}>PARTICIPANTS</Text>
                 <View style={{ gap: 8 }}>
-                  {mission.participants.map((pid) => (
-                    <View
-                      key={pid}
-                      style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
-                    >
-                      <Text style={[styles.infoValue, { color: theme.colors.text }]}>Utilisateur #{pid}</Text>
+                  {mission.participants.map((pid) => {
+                    const participant = users.find((u) => u.id === pid);
+                    const label = participant ? participant.name : `Utilisateur #${pid}`;
+
+                    return (
+                      <View
+                        key={pid}
+                        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                      >
+                        <Text style={[styles.infoValue, { color: theme.colors.text }]}>
+                          {label}
+                          {pid === mission.creatorId ? ' (Créateur)' : ''}
+                        </Text>
                       <Pressable
+                        disabled={pid === mission.creatorId}
                         onPress={() => {
+                          if (pid === mission.creatorId) {
+                            showToast(
+                              "Le créateur de la mission ne peut pas être retiré de la liste des participants.",
+                              'error',
+                            );
+                            logParticipantChange({
+                              missionId: mission.id,
+                              actingUserId: user?.id ?? null,
+                              targetUserId: mission.creatorId,
+                              action: 'attempt_remove_creator',
+                              details: 'Tentative de retrait du créateur depuis la liste des participants.',
+                            }).catch(() => {});
+                            return;
+                          }
                           const next = mission.participants.filter((idp) => idp !== pid);
                           updateMutation.mutate(
                             { participants: next, slotsTaken: next.length },
-                            { onSuccess: () => showToast('Participation annulée.', 'success') },
+                            {
+                              onSuccess: () => {
+                                logParticipantChange({
+                                  missionId: mission.id,
+                                  actingUserId: user?.id ?? null,
+                                  targetUserId: pid,
+                                  action: 'remove_participant',
+                                  details: 'Le créateur a retiré un participant de la mission.',
+                                }).catch(() => {});
+                                showToast('Participation annulée.', 'success');
+                              },
+                            },
                           );
                         }}
                         style={[
@@ -230,14 +301,23 @@ export default function MissionDetailScreen() {
                             paddingVertical: 6,
                             paddingHorizontal: 10,
                             backgroundColor: theme.colors.card,
-                            borderColor: '#FECACA',
+                            borderColor: pid === mission.creatorId ? theme.colors.border : '#FECACA',
+                            opacity: pid === mission.creatorId ? 0.6 : 1,
                           },
                         ]}
                       >
-                        <Text style={[styles.secondaryBtnText, { color: theme.colors.danger }]}>Retirer</Text>
+                        <Text
+                          style={[
+                            styles.secondaryBtnText,
+                            { color: pid === mission.creatorId ? theme.colors.mutedText : theme.colors.danger },
+                          ]}
+                        >
+                          {pid === mission.creatorId ? 'Créateur 🔒' : 'Retirer'}
+                        </Text>
                       </Pressable>
-                    </View>
-                  ))}
+                      </View>
+                    );
+                  })}
                 </View>
               </View>
             )}
