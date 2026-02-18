@@ -1,0 +1,18 @@
+export const colors = {
+  primary: '#2D6A4F',
+  primaryLight: '#52B788',
+  secondary: '#40916C',
+  danger: '#DC2626',
+  background: '#F0F7F4',
+  text: '#1A2E25',
+  mutedText: '#6B8F7A',
+  card: '#FFFFFF',
+  border: '#D8EDE4',
+  inputBg: '#FFFFFF',
+  chip: '#D8EDE4',
+  chipText: '#1A2E25',
+  accent: '#B7E4C7',
+  shadow: '#000000',
+  success: '#40916C',
+  tabBar: '#FFFFFF',
+};
