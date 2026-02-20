@@ -100,4 +100,4 @@ Consultez le dossier `doc/` pour une explication ligne par ligne de chaque fichi
 - [Hooks & TanStack Query](./doc/hooks.md)
 - [Thème & NativeWind](./doc/theme-nativewind.md)
 - [Permissions](./doc/permissions.md)
-- [Note Technique](./doc/note-technique.md)
+
