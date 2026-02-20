@@ -61,7 +61,7 @@ export default function MissionsScreen() {
       <StatusBar barStyle={theme.mode === 'dark' ? 'light-content' : 'dark-content'} />
       <View style={styles.header}>
         <View>
-          <Text style={[styles.logo, { color: theme.colors.primary }]}>🌿 EcoAction</Text>
+          <Text style={[styles.logo, { color: theme.colors.primary }]}>EcoAction</Text>
           <Text style={[styles.subtitle, { color: theme.colors.mutedText }]}>
             Missions de bénévolat environnemental
           </Text>
@@ -77,7 +77,6 @@ export default function MissionsScreen() {
         </Pressable>
       </View>
 
-      {/* Search */}
       <View style={[styles.searchWrapper, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
         <Text style={styles.searchIcon}>🔍</Text>
         <TextInput
@@ -94,7 +93,6 @@ export default function MissionsScreen() {
         )}
       </View>
 
-      {/* Type Filters */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -120,7 +118,6 @@ export default function MissionsScreen() {
         ))}
       </ScrollView>
 
-      {/* City Filters */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -160,7 +157,6 @@ export default function MissionsScreen() {
         ))}
       </ScrollView>
 
-      {/* Status Filters */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -186,7 +182,6 @@ export default function MissionsScreen() {
         ))}
       </ScrollView>
 
-      {/* Results count */}
       <Text style={[styles.resultsCount, { color: theme.colors.mutedText }]}>
         {filteredMissions.length} mission{filteredMissions.length !== 1 ? 's' : ''} trouvée{filteredMissions.length !== 1 ? 's' : ''}
       </Text>

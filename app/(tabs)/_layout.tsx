@@ -1,15 +1,9 @@
 import { Tabs, Redirect } from 'expo-router';
-import { ActivityIndicator, StyleSheet, View, Text } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 import { useAuth } from '../../src/hooks/useAuth';
 import { useTheme } from '../../src/theme/theme';
-
-function TabIcon({ emoji, label, focused }: { emoji: string; label: string; focused: boolean }) {
-  return (
-    <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 4 }}>
-      <Text style={{ fontSize: 20 }}>{emoji}</Text>
-    </View>
-  );
-}
 
 export default function TabsLayout() {
   const { isAuthenticated, isInitializing } = useAuth();
@@ -56,45 +50,37 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Explorer',
-          tabBarIcon: ({ focused }) => <TabIcon emoji="🌿" label="Explorer" focused={focused} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="search-outline" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="my-missions"
         options={{
           title: 'Mes missions',
-          tabBarIcon: ({ focused }) => <TabIcon emoji="✅" label="Mes missions" focused={focused} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="checkmark-circle-outline" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profil',
-          tabBarIcon: ({ focused }) => <TabIcon emoji="👤" label="Profil" focused={focused} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
+          ),
         }}
       />
 
-      {/* ✅ FIX: Ces écrans sont cachés du tab bar */}
-      <Tabs.Screen
-        name="mission-detail"
-        options={{ href: null }}
-      />
-      <Tabs.Screen
-        name="mission-edit"
-        options={{ href: null }}
-      />
-      <Tabs.Screen
-        name="new-mission"
-        options={{ href: null }}
-      />
+      <Tabs.Screen name="mission-detail" options={{ href: null }} />
+      <Tabs.Screen name="mission-edit" options={{ href: null }} />
+      <Tabs.Screen name="new-mission" options={{ href: null }} />
     </Tabs>
   );
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
 });

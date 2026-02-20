@@ -24,7 +24,7 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.colors.background }]} edges={['top']}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Header Card */}
+       
         <View style={[styles.profileCard, { backgroundColor: theme.colors.primary }]}>
           <Image
             source={{ uri: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg' }}
@@ -39,7 +39,7 @@ export default function ProfileScreen() {
           </View>
         </View>
 
-        {/* Stats */}
+        
         <View style={[styles.statsContainer, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
           <View style={styles.statItem}>
             <Text style={[styles.statNum, { color: theme.colors.primary }]}>{registeredCount}</Text>
@@ -59,7 +59,7 @@ export default function ProfileScreen() {
           </View>
         </View>
 
-        {/* Settings */}
+        
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: theme.colors.mutedText }]}>PRÉFÉRENCES</Text>
 
@@ -84,7 +84,7 @@ export default function ProfileScreen() {
           </View>
         </View>
 
-        {/* Account */}
+     
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: theme.colors.mutedText }]}>COMPTE</Text>
 
@@ -109,7 +109,7 @@ export default function ProfileScreen() {
           )}
         </View>
 
-        {/* Footer */}
+       
         <Text style={[styles.footer, { color: theme.colors.mutedText }]}>
           🌍 EcoAction • Agir pour la planète
         </Text>

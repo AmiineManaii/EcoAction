@@ -49,8 +49,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // No token refresh logic needed; sessions persist until logout.
-
   const handleLogin = async (email: string, password: string) => {
     const next = await login(email, password);
     await persistSession(next);

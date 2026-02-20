@@ -19,7 +19,7 @@ export default function MyMissionsScreen() {
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      {/* Header */}
+  
       <View style={styles.header}>
         <Text style={[styles.title, { color: theme.colors.text }]}>Mes missions</Text>
         <Text style={[styles.subtitle, { color: theme.colors.mutedText }]}>
@@ -27,7 +27,7 @@ export default function MyMissionsScreen() {
         </Text>
       </View>
 
-      {/* Stats bar */}
+   
       <View style={[styles.statsBar, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
         <View style={styles.statItem}>
           <Text style={[styles.statNumber, { color: theme.colors.primary }]}>{participatedMissions.length}</Text>

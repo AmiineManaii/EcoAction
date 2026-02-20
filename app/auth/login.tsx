@@ -54,7 +54,7 @@ export default function LoginScreen() {
       <StatusBar barStyle={theme.mode === 'dark' ? 'light-content' : 'dark-content'} />
 
       <Animated.View style={{ opacity, transform: [{ translateY }], flex: 1, justifyContent: 'center' }}>
-        {/* Logo */}
+        
         <View style={styles.logoSection}>
           <View style={[styles.logoCircle, { backgroundColor: theme.colors.primary }]}>
             <Text style={styles.logoEmoji}>🌿</Text>
@@ -65,11 +65,11 @@ export default function LoginScreen() {
           </Text>
         </View>
 
-        {/* Card */}
+       
         <View style={[styles.card, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
           <Text style={[styles.cardTitle, { color: theme.colors.text }]}>Connexion</Text>
 
-          {/* Email */}
+          
           <View style={[styles.inputWrapper, { backgroundColor: theme.colors.inputBg, borderColor: theme.colors.border }]}>
             <Text style={styles.inputIcon}>✉️</Text>
             <TextInput
@@ -83,7 +83,7 @@ export default function LoginScreen() {
             />
           </View>
 
-          {/* Password */}
+          
           <View style={[styles.inputWrapper, { backgroundColor: theme.colors.inputBg, borderColor: theme.colors.border }]}>
             <Text style={styles.inputIcon}>🔒</Text>
             <TextInput
@@ -99,7 +99,7 @@ export default function LoginScreen() {
             </Pressable>
           </View>
 
-          {/* Submit */}
+         
           <Pressable
             onPress={handleSubmit}
             disabled={isSubmitting}
@@ -111,12 +111,12 @@ export default function LoginScreen() {
             {isSubmitting ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={styles.submitText}>Se connecter →</Text>
+              <Text style={styles.submitText}>Se connecter</Text>
             )}
           </Pressable>
         </View>
 
-        {/* Footer */}
+      
         <View style={styles.footer}>
           <Text style={[styles.footerText, { color: theme.colors.mutedText }]}>Pas encore de compte ?</Text>
           <Pressable onPress={() => router.push('/auth/signup')}>

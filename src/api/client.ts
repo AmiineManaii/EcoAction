@@ -1,4 +1,4 @@
-const API_BASE_URL =  'http://192.168.1.15:3001';
+const API_BASE_URL =  'http://172.16.23.161:3001';
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {

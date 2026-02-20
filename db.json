@@ -17,8 +17,7 @@
       "createdAt": "2026-02-18T10:00:00.000Z",
       "creatorId": 1,
       "participants": [
-        1,
-        2
+        1
       ]
     },
     {
@@ -51,14 +50,15 @@
       "date": "2026-04-05T17:00:00.000Z",
       "durationHours": 2,
       "slotsTotal": 20,
-      "slotsTaken": 1,
+      "slotsTaken": 2,
       "status": "open",
       "imageUrl": "https://images.pexels.com/photos/3735208/pexels-photo-3735208.jpeg",
       "organizerName": "Zéro Déchet Sfax",
       "createdAt": "2026-02-12T14:30:00.000Z",
       "creatorId": 1,
       "participants": [
-        1
+        1,
+        2
       ]
     },
     {
@@ -151,14 +151,15 @@
       "date": "2026-05-02T07:00:00.000Z",
       "durationHours": 5,
       "slotsTotal": 35,
-      "slotsTaken": 20,
+      "slotsTaken": 2,
       "status": "open",
       "imageUrl": "https://images.pexels.com/photos/9543414/pexels-photo-9543414.jpeg",
       "organizerName": "Sahara Vert",
       "createdAt": "2026-02-18T11:30:00.000Z",
       "creatorId": 1,
       "participants": [
-        1
+        1,
+        2
       ]
     },
     {
@@ -412,6 +413,26 @@
       "slotsTaken": 1,
       "createdAt": "2026-02-18T23:30:13.095Z",
       "id": 21
+    },
+    {
+      "title": "Test2",
+      "description": "Tets",
+      "type": "nettoyage_plage",
+      "city": "Tunis",
+      "address": "Rades",
+      "date": "2026-02-20T07:58:33.397Z",
+      "durationHours": 2,
+      "slotsTotal": 20,
+      "imageUrl": "",
+      "organizerName": "",
+      "creatorId": 2,
+      "participants": [
+        2
+      ],
+      "status": "open",
+      "slotsTaken": 1,
+      "createdAt": "2026-02-20T07:58:53.630Z",
+      "id": 22
     }
   ],
   "users": [

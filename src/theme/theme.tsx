@@ -15,12 +15,10 @@ type ThemeContextValue = {
   toggleTheme: () => void;
 };
 
-// ☀️ Thème clair
 const lightColors: typeof baseColors = {
   ...baseColors,
 };
 
-// 🌙 Thème sombre
 const darkColors: typeof baseColors = {
   primary: '#52B788',
   primaryLight: '#74C69D',

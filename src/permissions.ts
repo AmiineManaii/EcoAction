@@ -15,12 +15,7 @@ export function isUserRegistered(userId: number | undefined, mission: MissionLik
   return !!userId && mission.participants.includes(userId);
 }
 
-export function canRegister(userId: number | undefined, mission: MissionLike): boolean {
-  if (!userId) return false;
-  if (mission.status !== 'open') return false;
-  if (isUserRegistered(userId, mission)) return true;
-  return mission.slotsTaken < mission.slotsTotal;
-}
+
 
 export function toggleParticipation(userId: number, mission: MissionLike): MissionLike {
   if (mission.creatorId === userId) {
@@ -33,22 +28,5 @@ export function toggleParticipation(userId: number, mission: MissionLike): Missi
   const slotsTaken = nextParticipants.length;
   const nextStatus =
     mission.status === 'open' && slotsTaken >= mission.slotsTotal ? 'full' : mission.status;
-  return { ...mission, participants: nextParticipants, slotsTaken, status: nextStatus };
-}
-
-export function removeParticipant(
-  actingUserId: number | undefined,
-  targetUserId: number,
-  mission: MissionLike,
-): MissionLike {
-  if (!canEditMission(actingUserId, mission)) {
-    throw new Error('Permission refusée');
-  }
-  if (targetUserId === mission.creatorId) {
-    throw new Error('Impossible de retirer le créateur de la mission.');
-  }
-  const nextParticipants = mission.participants.filter((id) => id !== targetUserId);
-  const slotsTaken = nextParticipants.length;
-  const nextStatus = mission.status === 'full' && slotsTaken < mission.slotsTotal ? 'open' : mission.status;
   return { ...mission, participants: nextParticipants, slotsTaken, status: nextStatus };
 }

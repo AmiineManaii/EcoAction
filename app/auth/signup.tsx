@@ -55,7 +55,7 @@ export default function SignupScreen() {
       <StatusBar barStyle={theme.mode === 'dark' ? 'light-content' : 'dark-content'} />
 
       <Animated.View style={{ opacity, transform: [{ translateY }], flex: 1, justifyContent: 'center' }}>
-        {/* Logo */}
+       
         <View style={styles.logoSection}>
           <View style={[styles.logoCircle, { backgroundColor: theme.colors.primary }]}>
             <Text style={styles.logoEmoji}>🌱</Text>
@@ -66,11 +66,11 @@ export default function SignupScreen() {
           </Text>
         </View>
 
-        {/* Card */}
+        
         <View style={[styles.card, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
           <Text style={[styles.cardTitle, { color: theme.colors.text }]}>Créer un compte</Text>
 
-          {/* Name */}
+         
           <View style={[styles.inputWrapper, { backgroundColor: theme.colors.inputBg, borderColor: theme.colors.border }]}>
             <Text style={styles.inputIcon}>👤</Text>
             <TextInput
@@ -82,7 +82,7 @@ export default function SignupScreen() {
             />
           </View>
 
-          {/* Email */}
+         
           <View style={[styles.inputWrapper, { backgroundColor: theme.colors.inputBg, borderColor: theme.colors.border }]}>
             <Text style={styles.inputIcon}>✉️</Text>
             <TextInput
@@ -96,7 +96,7 @@ export default function SignupScreen() {
             />
           </View>
 
-          {/* Password */}
+          
           <View style={[styles.inputWrapper, { backgroundColor: theme.colors.inputBg, borderColor: theme.colors.border }]}>
             <Text style={styles.inputIcon}>🔒</Text>
             <TextInput
@@ -112,7 +112,7 @@ export default function SignupScreen() {
             </Pressable>
           </View>
 
-          {/* Submit */}
+         
           <Pressable
             onPress={handleSubmit}
             disabled={isSubmitting}
@@ -124,12 +124,12 @@ export default function SignupScreen() {
             {isSubmitting ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={styles.submitText}>Créer mon compte →</Text>
+              <Text style={styles.submitText}>Créer mon compte</Text>
             )}
           </Pressable>
         </View>
 
-        {/* Footer */}
+        
         <View style={styles.footer}>
           <Text style={[styles.footerText, { color: theme.colors.mutedText }]}>Déjà inscrit ?</Text>
           <Pressable onPress={() => router.replace('/auth/login')}>

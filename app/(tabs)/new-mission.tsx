@@ -86,10 +86,11 @@ export default function NewMissionScreen() {
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      {/* Header */}
+
+
       <View style={[styles.header, { borderBottomColor: theme.colors.border }]}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Text style={[styles.backText, { color: theme.colors.primary }]}>← Annuler</Text>
+          <Text style={[styles.backText, { color: theme.colors.primary }]}>Annuler</Text>
         </Pressable>
         <Text style={[styles.headerTitle, { color: theme.colors.text }]}>Nouvelle mission</Text>
         <View style={{ width: 70 }} />
@@ -139,7 +140,7 @@ export default function NewMissionScreen() {
                           ]}
                         >
                           <Text style={[styles.removeText, { color: isCreator ? theme.colors.mutedText : theme.colors.danger }]}>
-                            {isCreator ? 'Créateur 🔒' : 'Retirer'}
+                            {isCreator ? 'Créateur' : 'Retirer'}
                           </Text>
                         </Pressable>
                       </View>
@@ -148,41 +149,6 @@ export default function NewMissionScreen() {
                 )}
               </View>
 
-              {selectableUsers.length > 0 && (
-                <View style={styles.addSection}>
-                  <Text style={[styles.addLabel, { color: theme.colors.mutedText }]}>Ajouter un participant</Text>
-                  <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    {selectableUsers.map((u) => (
-                      <Pressable
-                        key={u.id}
-                        onPress={() => {
-                          setParticipants((current) => [...current, u.id]);
-                          setSelectedUserId(u.id);
-                        }}
-                        style={({ pressed }) => [
-                          styles.userChip,
-                          {
-                            backgroundColor:
-                              selectedUserId === u.id ? theme.colors.primary : theme.colors.chip,
-                            borderColor:
-                              selectedUserId === u.id ? theme.colors.primary : theme.colors.border,
-                            opacity: pressed ? 0.85 : 1,
-                          },
-                        ]}
-                      >
-                        <Text
-                          style={[
-                            styles.userChipText,
-                            { color: selectedUserId === u.id ? '#fff' : theme.colors.text },
-                          ]}
-                        >
-                          {u.name}
-                        </Text>
-                      </Pressable>
-                    ))}
-                  </ScrollView>
-                </View>
-              )}
             </>
           )}
         </View>
