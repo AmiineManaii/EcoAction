@@ -10,14 +10,15 @@
       "date": "2026-03-15T09:00:00.000Z",
       "durationHours": 3,
       "slotsTotal": 40,
-      "slotsTaken": 1,
+      "slotsTaken": 2,
       "status": "open",
       "imageUrl": "https://images.pexels.com/photos/2827735/pexels-photo-2827735.jpeg",
       "organizerName": "Association Bleue Tunisie",
       "createdAt": "2026-02-18T10:00:00.000Z",
       "creatorId": 1,
       "participants": [
-        1
+        1,
+        3
       ]
     },
     {
@@ -449,6 +450,13 @@
       "password": "Amine1",
       "createdAt": "2026-02-18T18:00:33.869Z",
       "id": 2
+    },
+    {
+      "name": "Amine Manai",
+      "email": "amine@test2.com",
+      "password": "amine1",
+      "createdAt": "2026-02-20T20:20:24.816Z",
+      "id": 3
     }
   ]
 }
